@@ -1,32 +1,56 @@
+import { AiOutlineLoading } from "react-icons/ai"; 
 import React, { useState } from 'react';
 import { useGetSignUpMutation } from '../../../redux/api/authApi';
+import { notification } from 'antd';
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
-  const [signUp, { data, error, isLoading }] = useGetSignUpMutation();
-
-  const [email, setEmail] = useState('eve.holt@reqres.in');
-  const [password, setPassword] = useState('pistol');
+  const navigate = useNavigate();
+  const [signUp, { isLoading }] = useGetSignUpMutation();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleRegister = async (e) => {
     e.preventDefault();
-
     try {
       const result = await signUp({ email, password }).unwrap();
-      console.log('Registration successful:', result);
+      notification.success({ message: 'Registration successful' });
+      console.log(result.token)
+      navigate(`/profile/${result.id}`);
     } catch (err) {
-      console.error('Registration failed:', err);
+      notification.error({
+        message: (
+          <>
+            Registration failed: <br />
+            {err.data?.error || 'An error occurred.'}
+          </>
+        ),
+      });
     }
   };
 
   return (
-    <form onSubmit={handleRegister}>
-      <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Enter your email" required />
-      <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Enter your password" required />
-      <button type="submit" disabled={isLoading}>
-        {isLoading ? 'Registering...' : 'Register'}
-      </button>
-      {error && <p className="error">Registration error: {error.message}</p>}
-    </form>
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-md w-full bg-white p-8 rounded-xl shadow-lg">
+        <h2 className="text-center text-3xl font-bold text-gray-900 mb-6">
+          Sign Up
+        </h2>
+        <form className="space-y-6" onSubmit={handleRegister}>
+          <div className="flex flex-col gap-4">
+              <input id="email" name="email" type="email" required className="appearance-none rounded-lg relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter your email" value={email}
+                onChange={(e) => setEmail(e.target.value)} />
+              <input id="password" name="password" type="password" required className="appearance-none rounded-lg relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter your password" value={password} onChange={(e) => setPassword(e.target.value)} />
+          </div>
+
+            <button type="submit" disabled={isLoading} className="disabled:opacity-20 group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-150 ease-in-out">
+              {isLoading ? <div className="flex items-center">
+                <AiOutlineLoading className="animate-spin"/>
+                <span className="ml-2">Loading...</span>
+              </div> : 'Sign Up'}
+            </button>
+        </form>
+      </div>
+    </div>
   );
 };
 

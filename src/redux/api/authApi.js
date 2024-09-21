@@ -12,8 +12,21 @@ const authApi = api.injectEndpoints({
         },
       }),
     }),
+    getLogIn: build.mutation({
+        query: ({ email, password }) => ({
+          url: "/login",
+          method: "POST",
+          body: {
+              email,
+              password,
+          },
+        }),
+      }),
   }),
 });
 
-export const { useGetSignUpMutation } = authApi;
+export const {
+    useGetSignUpMutation,
+    useGetLogInMutation,
+    } = authApi;
 export default authApi;

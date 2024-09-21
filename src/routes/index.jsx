@@ -1,4 +1,3 @@
-import React, { lazy } from 'react'
 import { useRoutes } from 'react-router-dom'
 
 import Home from './home/Home'
@@ -6,6 +5,7 @@ import Details from './details/Details'
 import Auth from './auth/Auth'
 import SignUp from './auth/signup/SignUp'
 import LogIn from './auth/login/LogIn'
+import Profile from './auth/profile/Profile'
 
 
 
@@ -18,6 +18,10 @@ const RouterController = () => {
     {
       path: "/details/:id",
       element: <Details/>
+    },
+    {
+      path: "/profile/:id",
+      element: <Profile/>
     },
     {
       path: "/auth",
