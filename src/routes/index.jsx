@@ -1,11 +1,13 @@
 import React, { lazy } from 'react'
 import { useRoutes } from 'react-router-dom'
 
-const Home = lazy(() => import("../routes/home/Home"))
-const Auth = lazy(() => import("../routes/auth/Auth"))
-const SignUp = lazy(() => import("../routes/auth/signup/SignUp"))
-const LogIn = lazy(() => import("../routes/auth/login/LogIn"))
-const Details = lazy(() => import("../routes/details/Details"))
+import Home from './home/Home'
+import Details from './details/Details'
+import Auth from './auth/Auth'
+import SignUp from './auth/signup/SignUp'
+import LogIn from './auth/login/LogIn'
+
+
 
 const RouterController = () => {
   return useRoutes([

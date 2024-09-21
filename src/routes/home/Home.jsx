@@ -1,26 +1,11 @@
 import React from 'react'
-import { useGetUsersQuery } from "../../redux/api/userApi"
+import Users from '../../components/users/Users';
 
 const Home = () => {
-    const {data} = useGetUsersQuery();
-    const users = data?.data
-    console.log(users)
+    
   return (
-    <div>
-        {
-            users ? (
-                users.map(user => (
-                <div key={user.id} >
-                    <img src={user.avatar} alt="" />
-                    <p>{user.first_name}</p>
-                    <p>{user.last_name}</p>
-                    <p>{user.email}</p>
-                </div>   
-                ))
-            ) : (
-                <p>Loading...</p>
-            )
-        }
+    <div  >
+        <Users/>
     </div>
   )
 }
