@@ -2,7 +2,7 @@ import React from 'react';
 import { useGetDetailsQuery } from '../../../redux/api/userApi';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { Button } from 'antd';
+import { Button, notification } from 'antd';
 import { logOut } from '../../../redux/slice/authSlice';
 
 const Profile = () => {
@@ -15,6 +15,7 @@ const Profile = () => {
   const handleLogout = () => {
     dispatch(logOut());
     navigate('/');
+    notification.success({ message: 'Log Out successful' });
   };
 
   return (
