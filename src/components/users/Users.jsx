@@ -5,7 +5,6 @@ import { Button } from 'antd';
 const Users = () => {
     const { data, isLoading } = useGetUsersQuery();
     const users = data?.data;
-
     if (isLoading) {
         return <p className="flex items-center justify-center h-screen text-gray-500">Loading...</p>;
     }

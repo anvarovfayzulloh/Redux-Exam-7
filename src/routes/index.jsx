@@ -20,7 +20,7 @@ const RouterController = () => {
       element: <Details/>
     },
     {
-      path: "/profile/:id",
+      path: "/profile",
       element: <Profile/>
     },
     {

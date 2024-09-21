@@ -3,20 +3,24 @@ import React, { useState } from 'react';
 import { useGetSignUpMutation } from '../../../redux/api/authApi';
 import { notification } from 'antd';
 import { useNavigate } from "react-router-dom";
+import { signUp } from "../../../redux/slice/authSlice";
+import { useDispatch } from "react-redux";
 
 const SignUp = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [signUp, { isLoading }] = useGetSignUpMutation();
+  const [useSignUp, { isLoading }] = useGetSignUpMutation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      const result = await signUp({ email, password }).unwrap();
+      const result = await useSignUp({ email, password }).unwrap();
+      console.log(result.id);
       notification.success({ message: 'Registration successful' });
-      console.log(result.token)
-      navigate(`/profile/${result.id}`);
+      dispatch(signUp({ token: result.token, id: result.id }));
+      navigate(`/profile`);
     } catch (err) {
       notification.error({
         message: (
