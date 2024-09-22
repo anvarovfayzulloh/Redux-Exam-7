@@ -5,6 +5,7 @@ import { Button, notification } from 'antd';
 import { logOut } from '../../redux/slice/authSlice';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import Modal from '../modal/Modal';
 
 
 const Sidebar = () => {
@@ -32,9 +33,9 @@ const Sidebar = () => {
         <NavLink to="/e" className={({ isActive }) => `px-4 py-2 rounded ${isActive ? 'bg-gray-700' : 'hover:bg-gray-700'}`} >
           Notfound
         </NavLink>
-        <Button onClick={() => handleLogout()} danger type='primary' className='text-[18px] w-[224px] absolute bottom-10' >
-          <BiLogOut />Log Out
-        </Button>
+        <div className="absolute bottom-10 w-[224px]" >
+        <Modal/>
+        </div>
       </nav>
     </div>
   );
