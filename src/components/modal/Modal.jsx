@@ -1,3 +1,4 @@
+import { BiLogOut } from "react-icons/bi"; 
 import React from 'react';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import { Button, Modal, notification } from 'antd'; // Added notification import
@@ -31,8 +32,8 @@ const App = () => {
   };
 
   return (
-    <Button danger type="primary" onClick={showConfirm} className="hover:bg-red-600 transition-colors w-full" >
-      Log Out
+    <Button danger type="primary" onClick={showConfirm} className="hover:bg-red-600 transition-colors w-full flex items-center" >
+     <BiLogOut size={20} /> Log Out
     </Button>
   );
 };
