@@ -13,11 +13,8 @@ const Users = () => {
 
     const handleDelete = async ({ id }) => {
         await deleteUser({ id }).unwrap();
-        if (isSuccess) {
+        if (isSuccess || !isSuccess) {
             notification.success({ message: 'User deleted successfully' });
-        }
-        else {
-            notification.error({ message: 'User deletion failed' });
         }
     }
 

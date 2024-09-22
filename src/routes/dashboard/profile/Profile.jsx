@@ -1,27 +1,18 @@
 import React from 'react';
 import { useGetDetailsQuery } from '../../../redux/api/userApi';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
-import { Button, notification } from 'antd';
-import { logOut } from '../../../redux/slice/authSlice';
-import Sidebar from '../../../components/sidebar/Sidebar';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { Button } from 'antd';
 
 const Profile = () => {
   const { id } = useSelector(state => state.auth);
   const { data } = useGetDetailsQuery({ id });
   const user = data?.data;
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
 
-  const handleLogout = () => {
-    dispatch(logOut());
-    navigate('/');
-    notification.success({ message: 'Log Out successful' });
-  };
+  
 
   return (
     <div className="w-full flex ">
-      <Sidebar/>
       <div className='user flex w-full justify-center items-center'>
       {user ? (
         <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-8 text-center">
@@ -34,9 +25,6 @@ const Profile = () => {
             {user.first_name} {user.last_name}
           </h1>
           <p className="text-gray-600 text-lg mb-4">{user.email}</p>
-          {/* <Button onClick={() => handleLogout()} danger type='primary' className='text-[18px] px-[20px] py-[15px]' >
-            Log Out
-          </Button> */}
         </div>
       ) : (
         <p className="font-semibold text-[24px] ml-2 font-sans text-[#5e5c5c]">

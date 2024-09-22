@@ -21,11 +21,19 @@ const userApi = api.injectEndpoints({
             }),
             invalidatesTags: ["USERS"],
         }),
-
+        createUser: build.mutation({
+            query: ({ data }) => ({
+                url: `/users/`,
+                method: "POST",
+                body: data,
+            }),
+            invalidatesTags: ["USERS"],
+        }),
     })
 })
 export const {
     useGetUsersQuery,
     useGetDetailsQuery,
     useDeleteUserMutation,
+    useCreateUserMutation,
 } = userApi

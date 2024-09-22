@@ -26,10 +26,6 @@ const RouterController = () => {
       element: <Layout><Home/></Layout>
     },
     {
-      path: "/create",
-      element: <Create/>
-    },
-    {
       path: "/details/:id",
       element: <Layout><Details/></Layout>
     },
@@ -44,6 +40,10 @@ const RouterController = () => {
             {
               path: "/dashboard/profile",
               element: <Profile/>
+            },
+            {
+              path: "/dashboard/create",
+              element: <Create/>
             }
           ]
         },
