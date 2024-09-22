@@ -20,7 +20,7 @@ const SignUp = () => {
       const result = await useSignUp({ email, password }).unwrap();
       notification.success({ message: 'Registration successful' });
       dispatch(signUp({ token: result.token, id: result.id }));
-      navigate(`/profile`);
+      navigate(`/dashboard/profile`);
     } catch (err) {
       notification.error({
         message: (

@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom'; // Assuming you're using React Router
+import { NavLink } from 'react-router-dom'; 
 
 const Sidebar = () => {
   return (
@@ -14,6 +14,9 @@ const Sidebar = () => {
         </NavLink>
         <NavLink to="/create" className={({ isActive }) => `px-4 py-2 rounded ${isActive ? 'bg-gray-700' : 'hover:bg-gray-700'}` } >
           Create
+        </NavLink>
+        <NavLink to="/e" className={({ isActive }) => `px-4 py-2 rounded ${isActive ? 'bg-gray-700' : 'hover:bg-gray-700'}` } >
+          Notfound
         </NavLink>
       </nav>
     </div>

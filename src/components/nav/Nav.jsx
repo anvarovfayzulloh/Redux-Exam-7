@@ -1,15 +1,11 @@
 import React, { useLayoutEffect } from 'react';
 import { Link } from 'react-router-dom';
-// import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 
 const Nav = () => {
-  // const { pathname } = useLocation();
   const { token } = useSelector(state => state.auth)
-  // if (pathname.includes("auth") || pathname.includes("profile")) {
-  //   return
-  // }
+  
 
   return (
     <nav className="bg-white shadow-md">
@@ -31,7 +27,7 @@ const Nav = () => {
                 </Link>
               </li>
             </ul>) : ( <li>
-                <Link to="profile" className="text-gray-700 hover:text-blue-600 transition duration-200">
+                <Link to="/dashboard/profile" className="text-gray-700 hover:text-blue-600 transition duration-200">
                   Profile
                 </Link>
               </li>)

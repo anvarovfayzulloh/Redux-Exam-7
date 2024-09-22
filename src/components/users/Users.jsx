@@ -16,6 +16,9 @@ const Users = () => {
         if (isSuccess) {
             notification.success({ message: 'User deleted successfully' });
         }
+        else {
+            notification.error({ message: 'User deletion failed' });
+        }
     }
 
     return (
