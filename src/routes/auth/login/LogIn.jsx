@@ -1,25 +1,14 @@
 import { AiOutlineLoading } from "react-icons/ai";
-import { useLayoutEffect, useState } from "react";
+import { useState } from "react";
 import { useGetLogInMutation } from '../../../redux/api/authApi';
 import { notification } from 'antd';
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { logIn } from "../../../redux/slice/authSlice";
 import { Link } from "react-router-dom";
-import { useLocation } from "react-router-dom";
 
 const LogIn = () => {
   const navigate = useNavigate();
-  const {token} = useSelector(state => state.auth);
-  const { pathname } = useLocation();
-
-
-  useLayoutEffect(() => {
-    if(token){
-      navigate("/");
-    }
-  }, [pathname])
-
   const dispatch = useDispatch();
   const [useLogIn, { isLoading }] = useGetLogInMutation();
   const [email, setEmail] = useState('');

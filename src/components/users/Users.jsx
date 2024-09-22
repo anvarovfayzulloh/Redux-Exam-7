@@ -31,7 +31,9 @@ const Users = () => {
                                 </h2>
                                 <p className="text-gray-600">{user.email}</p>
                             </Link>
-                            <Button className='w-[70px]' onClick={() => handleDelete({ id: user.id })} type="primary" danger>
+                            <Button {
+                                ...(!deleteUserIsLoading ? { disabled: false } : { disabled: true })
+                            } className='w-[70px]' onClick={() => handleDelete({ id: user.id })} type="primary" danger>
                                 {deleteUserIsLoading ? <div className="flex items-center">
                                 <AiOutlineLoading className="animate-spin" />
                                 <span className="ml-2"></span>
