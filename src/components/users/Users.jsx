@@ -1,12 +1,20 @@
 import { Link } from 'react-router-dom';
-import { useGetUsersQuery } from '../../redux/api/userApi';
-import { Button } from 'antd';
+import { useGetUsersQuery, useDeleteUserMutation } from '../../redux/api/userApi';
+import { Button, notification } from 'antd';
 
 const Users = () => {
-    const { data, isLoading } = useGetUsersQuery();
+    const { data, isLoading: usersIsLoading } = useGetUsersQuery();
+    const [deleteUser, { isLoading: deleteUserIsLoading, isSuccess }] = useDeleteUserMutation();
     const users = data?.data;
-    if (isLoading) {
+    if (usersIsLoading) {
         return <p className="flex items-center justify-center h-screen text-gray-500">Loading...</p>;
+    }
+
+    const handleDelete = async ({id}) => {
+        await deleteUser({ id }).unwrap();
+        if(isSuccess){
+            notification.success({ message: 'User deleted successfully' });
+        }
     }
 
     return (
@@ -22,7 +30,7 @@ const Users = () => {
                             </h2>
                             <p className="text-gray-600">{user.email}</p>
                             </Link>
-                            <Button type="primary" danger>Delete</Button>
+                            <Button onClick={() => handleDelete({id: user.id})} type="primary" danger>Delete</Button>
                         </div>
                     ))
                 ) : (

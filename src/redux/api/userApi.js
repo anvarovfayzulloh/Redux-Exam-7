@@ -9,14 +9,23 @@ const userApi = api.injectEndpoints({
             providesTags: ["USERS"],
         }),
         getDetails: build.query({
-            query: ({id}) => ({
+            query: ({ id }) => ({
                 url: `/users/${id}`,
+            }),
+            providesTags: ["USERS"],
+        }),
+        deleteUser: build.mutation({
+            query: ({ id }) => ({
+                url: `/users/${id}`,
+                method: "DELETE",
             }),
             invalidatesTags: ["USERS"],
         }),
+
     })
 })
-export const { 
+export const {
     useGetUsersQuery,
     useGetDetailsQuery,
- } = userApi
+    useDeleteUserMutation,
+} = userApi

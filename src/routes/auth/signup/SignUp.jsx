@@ -17,7 +17,6 @@ const SignUp = () => {
     e.preventDefault();
     try {
       const result = await useSignUp({ email, password }).unwrap();
-      console.log(result.id);
       notification.success({ message: 'Registration successful' });
       dispatch(signUp({ token: result.token, id: result.id }));
       navigate(`/profile`);
