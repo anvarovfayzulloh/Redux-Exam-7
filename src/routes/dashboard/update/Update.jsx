@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { useUpdateUserMutation, useGetUsersQuery } from '../../../redux/api/userApi';
+import { useUpdateUserMutation, useGetUsersQuery, useGetUsersv2Query } from '../../../redux/api/userApi';
 import { notification, Carousel } from 'antd';
 
 const Update = () => {
     const [updateUser, { isLoading }] = useUpdateUserMutation();
     const { data } = useGetUsersQuery();
+    const { data: datav2 } = useGetUsersQuery();
     const users = data?.data || [];
+    const usersv2 = datav2?.data || [];
 
     const [name, setName] = useState('');
     const [job, setJob] = useState('');
@@ -39,6 +41,11 @@ const Update = () => {
                 <select id="user" value={id} onChange={(e) => setId(e.target.value)} className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" >
                     <option value="" disabled>Select a user</option>
                     {users.map((user) => (
+                        <option key={user.id} value={user.id}>
+                            {user.first_name} {user.last_name}
+                        </option>
+                    ))}
+                    {usersv2.map((user) => (
                         <option key={user.id} value={user.id}>
                             {user.first_name} {user.last_name}
                         </option>

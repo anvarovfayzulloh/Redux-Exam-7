@@ -8,6 +8,12 @@ const userApi = api.injectEndpoints({
             }),
             providesTags: ["USERS"],
         }),
+        getUsersv2: build.query({
+            query: () => ({
+                url: "/users?page=2",
+            }),
+            providesTags: ["USERS"],
+        }),
         getDetails: build.query({
             query: ({ id }) => ({
                 url: `/users/${id}`,
@@ -41,6 +47,7 @@ const userApi = api.injectEndpoints({
 })
 export const {
     useGetUsersQuery,
+    useGetUsersv2Query,
     useGetDetailsQuery,
     useDeleteUserMutation,
     useCreateUserMutation,
