@@ -1,9 +1,10 @@
+import { AiOutlineLoading } from "react-icons/ai"; 
 import { useCreateUserMutation } from '../../../redux/api/userApi';
 import { useState } from 'react';
 import { notification } from 'antd';
 
 const Create = () => {
-  const [createUser] = useCreateUserMutation();
+  const [createUser, { isLoading }] = useCreateUserMutation();
   const [name, setName] = useState('');
   const [job, setJob] = useState('');
 
@@ -19,7 +20,7 @@ const Create = () => {
         setJob('');
       }
     } catch (error) {
-      notification.error({ message: 'User creation failed'});
+      notification.error({ message: 'User creation failed' });
     }
   };
 
@@ -29,8 +30,10 @@ const Create = () => {
         <h2 className="text-2xl font-semibold text-center mb-4">Create User</h2>
         <input required value={name} onChange={(e) => setName(e.target.value)} type="text" placeholder="Enter your name" className="w-full px-4 py-2 mb-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
         <input required value={job} onChange={(e) => setJob(e.target.value)} type="text" placeholder="Enter your job" className="w-full px-4 py-2 mb-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
-        <button type="submit" className="w-full py-2 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 transition-colors" >
-          Create
+        <button disabled={isLoading} type="submit" className="w-full py-2 disabled:opacity-50 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 transition-colors" >
+          {
+            isLoading ? <p className="flex items-center justify-center gap-3" ><AiOutlineLoading className="animate-spin"/>Loading...</p> : 'Create User'
+          }
         </button>
       </form>
     </div>

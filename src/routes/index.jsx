@@ -11,6 +11,7 @@ import Nav from '../components/nav/Nav'
 import Create from './dashboard/create/Create'
 import Private from './private/Private'
 import Dashboard from './dashboard/Dashboard'
+import Update from './dashboard/update/Update'
 
 const Layout = ({ children }) => (
   <>
@@ -44,6 +45,10 @@ const RouterController = () => {
             {
               path: "/dashboard/create",
               element: <Create/>
+            },
+            {
+              path: "/dashboard/update",
+              element: <Update/>
             }
           ]
         },

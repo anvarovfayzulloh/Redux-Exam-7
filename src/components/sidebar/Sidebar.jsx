@@ -21,16 +21,19 @@ const Sidebar = () => {
   return (
     <div className="h-screen min-w-64 bg-gray-800 text-white p-4">
       <nav className="flex flex-col space-y-4 pt-10">
-        <NavLink to="/" className={({ isActive }) => `px-4 py-2 rounded ${isActive ? 'bg-gray-700' : 'hover:bg-gray-700'}`} >
+        <NavLink to="/" className={({ isActive }) => `px-4 py-2 rounded ${isActive ? 'bg-[#000]' : 'hover:bg-gray-700'}`} >
           Home
         </NavLink>
-        <NavLink to="/dashboard/profile" className={({ isActive }) => `px-4 py-2 rounded ${isActive ? 'bg-gray-700' : 'hover:bg-gray-700'}`} >
+        <NavLink to="/dashboard/profile" className={({ isActive }) => `px-4 py-2 rounded ${isActive ? 'bg-[#000]' : 'hover:bg-gray-700'}`} >
           Profile
         </NavLink>
-        <NavLink to="/dashboard/create" className={({ isActive }) => `px-4 py-2 rounded ${isActive ? 'bg-gray-700' : 'hover:bg-gray-700'}`} >
+        <NavLink to="/dashboard/create" className={({ isActive }) => `px-4 py-2 rounded ${isActive ? 'bg-[#000]' : 'hover:bg-gray-700'}`} >
           Create
         </NavLink>
-        <NavLink to="/e" className={({ isActive }) => `px-4 py-2 rounded ${isActive ? 'bg-gray-700' : 'hover:bg-gray-700'}`} >
+        <NavLink to="/dashboard/update" className={({ isActive }) => `px-4 py-2 rounded ${isActive ? 'bg-[#000]' : 'hover:bg-gray-700'}`} >
+          Update
+        </NavLink>
+        <NavLink to="/e" className={({ isActive }) => `px-4 py-2 rounded ${isActive ? 'bg-[#000]' : 'hover:bg-gray-700'}`} >
           Notfound
         </NavLink>
         <div className="absolute bottom-10 w-[224px]" >
