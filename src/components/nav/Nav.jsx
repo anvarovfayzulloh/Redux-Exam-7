@@ -1,14 +1,15 @@
 import React, { useLayoutEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
+// import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
+
 const Nav = () => {
-  const { pathname } = useLocation();
+  // const { pathname } = useLocation();
   const { token } = useSelector(state => state.auth)
-  if (pathname.includes("auth")) {
-    return
-  }
+  // if (pathname.includes("auth") || pathname.includes("profile")) {
+  //   return
+  // }
 
   return (
     <nav className="bg-white shadow-md">

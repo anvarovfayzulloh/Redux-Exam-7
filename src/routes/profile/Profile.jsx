@@ -1,9 +1,10 @@
 import React from 'react';
-import { useGetDetailsQuery } from '../../../redux/api/userApi';
+import { useGetDetailsQuery } from '../../redux/api/userApi';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button, notification } from 'antd';
-import { logOut } from '../../../redux/slice/authSlice';
+import { logOut } from '../../redux/slice/authSlice';
+import Sidebar from '../../components/sidebar/Sidebar';
 
 const Profile = () => {
   const { id } = useSelector(state => state.auth);
@@ -19,7 +20,9 @@ const Profile = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-50 p-6">
+    <div className="w-full flex ">
+      <Sidebar/>
+      <div className='user flex w-full justify-center items-center'>
       {user ? (
         <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-8 text-center">
           <img
@@ -31,15 +34,16 @@ const Profile = () => {
             {user.first_name} {user.last_name}
           </h1>
           <p className="text-gray-600 text-lg mb-4">{user.email}</p>
-          <Button onClick={() => handleLogout()} danger type='primary' className='text-[18px] px-[20px] py-[15px]' >
+          {/* <Button onClick={() => handleLogout()} danger type='primary' className='text-[18px] px-[20px] py-[15px]' >
             Log Out
-          </Button>
+          </Button> */}
         </div>
       ) : (
         <p className="font-semibold text-[24px] ml-2 font-sans text-[#5e5c5c]">
-          Register to enter <Link to="/auth/signup" className='text-blue-600 underline'>Sign Up</Link>
+            Register to enter <Link to="/auth/signup" className='text-blue-600 underline'>Sign Up</Link>
         </p>
       )}
+      </div>
     </div>
   );
 };
